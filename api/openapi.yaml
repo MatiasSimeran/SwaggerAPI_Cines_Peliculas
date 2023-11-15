@@ -1,0 +1,223 @@
+openapi: 3.0.0
+info:
+  title: API de Cines y Películas
+  description: Documentación de la API para gestionar cines y películas.
+  version: 1.0.0
+servers:
+- url: http://localhost:4000/api
+tags:
+- name: cines
+  description: Operaciones relacionadas con cines
+- name: peliculas
+  description: Operaciones relacionadas con películas
+paths:
+  /cines:
+    get:
+      tags:
+      - cines
+      summary: Obtiene todos los cines
+      operationId: cinesGET
+      responses:
+        "200":
+          description: Lista de cines
+      x-swagger-router-controller: Cines
+    post:
+      tags:
+      - cines
+      summary: Agrega un nuevo cine
+      operationId: cinesPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cines_body'
+      responses:
+        "200":
+          description: Cine agregado exitosamente
+      x-swagger-router-controller: Cines
+  /cines/{id}:
+    get:
+      tags:
+      - cines
+      summary: Obtiene un cine por ID
+      operationId: cinesIdGET
+      parameters:
+      - name: id
+        in: path
+        description: ID del cine a obtener
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Detalles del cine
+      x-swagger-router-controller: Cines
+    put:
+      tags:
+      - cines
+      summary: Actualiza un cine por ID
+      operationId: cinesIdPUT
+      parameters:
+      - name: id
+        in: path
+        description: ID del cine a actualizar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/cines_id_body'
+      responses:
+        "200":
+          description: Cine actualizado exitosamente
+      x-swagger-router-controller: Cines
+    delete:
+      tags:
+      - cines
+      summary: Elimina un cine por ID
+      operationId: cinesIdDELETE
+      parameters:
+      - name: id
+        in: path
+        description: ID del cine a eliminar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Cine eliminado exitosamente
+      x-swagger-router-controller: Cines
+  /peliculas:
+    get:
+      tags:
+      - peliculas
+      summary: Obtiene todas las películas
+      operationId: peliculasGET
+      responses:
+        "200":
+          description: Lista de películas
+      x-swagger-router-controller: Peliculas
+    post:
+      tags:
+      - peliculas
+      summary: Agrega una nueva película
+      operationId: peliculasPOST
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/peliculas_body'
+      responses:
+        "200":
+          description: Película agregada exitosamente
+      x-swagger-router-controller: Peliculas
+  /peliculas/{id}:
+    get:
+      tags:
+      - peliculas
+      summary: Obtiene una película por ID
+      operationId: peliculasIdGET
+      parameters:
+      - name: id
+        in: path
+        description: ID de la película a obtener
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Detalles de la película
+      x-swagger-router-controller: Peliculas
+    put:
+      tags:
+      - peliculas
+      summary: Actualiza una película por ID
+      operationId: peliculasIdPUT
+      parameters:
+      - name: id
+        in: path
+        description: ID de la película a actualizar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/peliculas_id_body'
+      responses:
+        "200":
+          description: Película actualizada exitosamente
+      x-swagger-router-controller: Peliculas
+    delete:
+      tags:
+      - peliculas
+      summary: Elimina una película por ID
+      operationId: peliculasIdDELETE
+      parameters:
+      - name: id
+        in: path
+        description: ID de la película a eliminar
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Película eliminada exitosamente
+      x-swagger-router-controller: Peliculas
+components:
+  schemas:
+    cines_body:
+      type: object
+      properties:
+        nombre:
+          type: string
+        ubicacion:
+          type: string
+        capacidad:
+          type: integer
+    cines_id_body:
+      type: object
+      properties:
+        nombre:
+          type: string
+        ubicacion:
+          type: string
+        capacidad:
+          type: integer
+    peliculas_body:
+      type: object
+      properties:
+        titulo:
+          type: string
+        director:
+          type: string
+        anio:
+          type: integer
+        rating:
+          type: number
+    peliculas_id_body:
+      type: object
+      properties:
+        titulo:
+          type: string
+        director:
+          type: string
+        anio:
+          type: integer
+        rating:
+          type: number
